@@ -1,14 +1,7 @@
 // requesting the function from iss.js file
 const { nextISSTimesForMyLocation } = require('./iss');
+const { printPastTimes } = require('./pastTimes');
 
-const printPastTimes = (passTimes) => {
-  for (const pass of passTimes) {
-    const datetime = new Date(0);
-    datetime.setUTCSeconds(pass.risetime);
-    const duration = pass.duration;
-    console.log(`Next pass at ${datetime} for ${duration} seconds!`);
-  }
-};
 
 nextISSTimesForMyLocation((error, passTimes) => {
   if (error) {
@@ -16,7 +9,6 @@ nextISSTimesForMyLocation((error, passTimes) => {
   }
 
   // if success - will print out the details
-  // printPastTimes(passTimes);
+  printPastTimes(passTimes);
 });
 
-module.exports = { printPastTimes };
